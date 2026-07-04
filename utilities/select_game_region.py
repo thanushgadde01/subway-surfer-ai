@@ -22,14 +22,18 @@ print("2. Click and drag a box over your Subway Surfers game window.")
 print("3. Press 'ENTER' or 'SPACE' to confirm, or 'c' to cancel.")
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-# regions_folder = os.path.join(current_dir, "..", "game_regions", "left top.png")
-regions_folder = os.path.join(current_dir, "..", "dataset", "roll", "0b36925c-838c-4529-8508-523af4a1f626.jpg")
+regions_folder = os.path.join(current_dir, "..", "game_regions", "middle bottom.png")
 
 with mss.mss() as sct:
     # 1. Capture the entire primary monitor
-    img = cv2.imread(regions_folder)
+    monitor = sct.monitors[1]
+    screenshot_mss = sct.grab(monitor)
+    
+    # Convert raw MSS capture to a numpy array for OpenCV
+    screenshot = np.array(screenshot_mss)
+    
     # Convert from BGRA to BGR for OpenCV
-    screenshot = cv2.cvtColor(img, cv2.COLOR_BGRA2BGR)
+    screenshot = cv2.cvtColor(screenshot, cv2.COLOR_BGRA2BGR)
     
     # 2. Open the interactive selection window
     # (Drag your mouse to select the game area)

@@ -19,4 +19,6 @@ dependencies = [
     "torchaudio>=2.11.0",
     "torchvision>=0.27.0",
     "tqdm>=4.68.2",
+    "pynput>=1.7.6",
 ]
+
